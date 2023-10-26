@@ -5,27 +5,28 @@ const mongoose = require('mongoose')
 
 const app = express()
 
-//db connect
+// db connect
 mongoose.connect('mongodb://localhost/crud-mango')
   .then(db => console.log('Db connected'))
   .catch(err => console.log(err))
 
-//import routes
+// import routes
 const indexRoutes = require('./routes/index')
 
-//settings
+// settings
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-//middleware
+// middleware
 app.use(morgan('dev'))
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static('public'))
 
-//routes
+// routes
 app.use('/', indexRoutes)
 
-//server
+// server
 const port = app.get('port')
 
 app.listen(port, () => {

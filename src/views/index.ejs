@@ -1,11 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Nodejs MongoDB</title>
-</head>
-<body>
-    <h1>Hello CRUD!</h1>
-</body>
-</html>
+<%- include('partials/_header') %>
+
+    <div class="container">
+        <div class="row">
+            <!-- FORM -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="post">
+                            <div class="form-group mb-3">
+                                <input type="text" name="title" placeholder="Insert a Title" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <textarea name="description" cols="80" placeholder="Insert a Description" class="form-control"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                Add
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- List -->
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<%- include('partials/_footer') %>
