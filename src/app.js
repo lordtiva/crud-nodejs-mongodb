@@ -1,12 +1,14 @@
-import {express} from 'express'
-import {morgan} from 'morgan'
-import {path} from 'path'
-import {dirname} from 'path'
-import {fileURLToPath} from 'url'
+const path = require('path')
+const express = require('express')
+const morgan = require('morgan')
+const mongoose = require('mongoose')
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 const app = express()
+
+//db connect
+mongoose.connect('mongodb://localhost/crud-mango')
+  .then(db => console.log('Db connected'))
+  .catch(err => console.log(err))
 
 //import routes
 const indexRoutes = require('./routes/index')
@@ -18,6 +20,7 @@ app.set('view engine', 'ejs')
 
 //middleware
 app.use(morgan('dev'))
+app.use(express.urlencoded({extended: false}))
 
 //routes
 app.use('/', indexRoutes)
