@@ -6,9 +6,16 @@ const mongoose = require('mongoose')
 const app = express()
 
 // db connect
-mongoose.connect('mongodb://localhost/crud-mango')
-  .then(db => console.log('Db connected'))
-  .catch(err => console.log(err))
+try {
+  mongoose.connect('mongodb://localhost/crud-mango', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  console.log('Db connected');
+} catch (error) {
+  console.error('Error connecting to the database: ', error);
+  process.exit(1); // Stops the application if it can't connect to the database
+}
 
 // import routes
 const indexRoutes = require('./routes/index')
